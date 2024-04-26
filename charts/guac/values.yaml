@@ -113,7 +113,7 @@ guac:
     # tag:
     # When digest is set to a non-empty value, images will be pulled by digest (regardless of tag value).
     digest: ""
-    pullPolicy: IfNotPresent
+    pullPolicy: Always
     workingDir: /guac
 
   common:
@@ -224,7 +224,7 @@ guac:
       tag: "v0.0.3"
       # When digest is set to a non-empty value, images will be pulled by digest (regardless of tag value).
       digest: ""
-      pullPolicy: IfNotPresent
+      pullPolicy: Always
       ports:
         - containerPort: 3000
     env: {}
@@ -243,11 +243,16 @@ guac:
     env: {}
 
   ingress:
-    enabled: false
+    enabled: true
     # ingressClassName:
-    # webuiHostname:
-    # apiHostname:
-    # annotations:
+    webuiHostname: guac.teq0.com
+    apiHostname: guacapi.teq0.com
+    annotations:
+      traefik.ingress.kubernetes.io/preserve-host: "true"
+      ingress.kubernetes.io/whitelist-x-forwarded-for: "true"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      traefik.ingress.kubernetes.io/router.middlewares: kube-system-redirect-https@kubernetescrd
+
 
   apiOnlyIngress:
     enabled: false
@@ -356,4 +361,3 @@ minio:
 
 nodeSelectors: 
   workerGroup: "7"
-
