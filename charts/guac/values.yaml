@@ -4,8 +4,8 @@
 
 ## @section Global parameters
 ## @param imagePullSecrets[0].name Docker registry secret name for pulling images
-imagePullSecrets:
-  - name: imagepullsecret
+# imagePullSecrets:
+#   - name: imagepullsecret
 
 ## @section Guac
 ## @descriptionStart This section contains parameters for configuring the different GUAC components.
