@@ -353,3 +353,7 @@ minio:
     - accessKey: accessKey
       secretKey: secretKey
       policy: readwrite
+
+nodeSelectors: 
+  workerGroup: "7"
+
